@@ -10,5 +10,5 @@ Check https://github.com/skorokithakis/catt for install instructions
 
 ## Usage
 
-- web2cast --chromecast YourChromecastName --url http://www.google.com --time 5
+- `web2cast --chromecast YourChromecastName --url http://www.google.com --time 5`
 Will check chromecast YourChromeCast every 5 seconds to see if it's idle. If it is, it will cast http://www.google.com using `DashCast`.

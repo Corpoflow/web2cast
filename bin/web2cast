@@ -4,12 +4,12 @@ const program = require('commander');
 const pkg = require('../package.json');
 const exec = require('child_process').exec;
 
-
 program
 .version(pkg.version)
 .option('-c, --chromecast [string]', 'the name of the target device', false)
 .option('-u, --url [string]', 'the URL to cast', false)
 .option('-t, --time [int]', 'interval in seconds to test if the Chromecast', 5)
+.option('-b, --bin [string]', 'absolute path to catt binary', 'catt')
 .parse(process.argv);
 
 // Check chromecast
@@ -33,13 +33,13 @@ program.time = parseInt(program.time) || 5;
 let execute = function() {
 
     // Check if the Chromecast is inactive
-    exec(`catt -d ${program.chromecast} info`, function(error, stdout, stderr) {
+    exec(`${program.bin} -d ${program.chromecast} info`, function(error, stdout, stderr) {
 
         // Inactive? Cool
         if (stderr.trim() === 'Error: Chromecast is inactive.') {
 
             // Start cast, shoot and forget
-            exec(`catt -d ${program.chromecast} cast_site ${program.url}`);
+            exec(`${program.bin} -d ${program.chromecast} cast_site ${program.url}`);
         }
 
         // Restart the timeout, aka check again in x amount of seconds

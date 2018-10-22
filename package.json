@@ -1,7 +1,8 @@
 {
-  "name": "web2cast",
+  "name": "@corpoflow/web2cast",
   "description": "Command line tool to cast a webpage to a Chromecast when it's idle. Uses `catt`! Please refer to the readme!",
   "version": "1.0.0",
+  "private": false,
   "bin": "bin/web2cast",
   "main": "index.js",
   "license": "MIT",

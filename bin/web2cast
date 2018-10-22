@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const pkg = require('../package.json');
+const exec = require('child_process').exec;
+
+
+program
+.version(pkg.version)
+.option('-c, --chromecast [string]', 'the name of the target device', false)
+.option('-u, --url [string]', 'the URL to cast', false)
+.option('-t, --time [int]', 'interval in seconds to test if the Chromecast', 5)
+.parse(process.argv);
+
+// Check chromecast
+if (!program.chromecast) {
+    console.log('No chromecast provided. Please pass -c or --chromecast <your-chromecast-name>');
+    process.exit(1);
+}
+
+// Check url
+if (!program.url) {
+    console.log('No url provided. Please pass -u or --url <http://your.url>');
+    process.exit(1);
+}
+
+// Make sure we int
+program.time = parseInt(program.time) || 5;
+
+/**
+ * Check if we need to cast and cast
+ */
+let execute = function() {
+
+    // Check if the Chromecast is inactive
+    exec(`catt -d ${program.chromecast} info`, function(error, stdout, stderr) {
+
+        // Inactive? Cool
+        if (stderr.trim() === 'Error: Chromecast is inactive.') {
+
+            // Start cast, shoot and forget
+            exec(`catt -d ${program.chromecast} cast_site ${program.url}`);
+        }
+
+        // Restart the timeout, aka check again in x amount of seconds
+        executeTimeout();
+    });
+};
+
+/**
+ *
+ */
+let executeTimeout = function() {
+
+    setTimeout(function() {
+        execute();
+    }, 1e3 * program.time);
+
+};
+
+// Start the first check
+execute();

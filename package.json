@@ -6,7 +6,21 @@
   "bin": "bin/web2cast",
   "main": "index.js",
   "license": "MIT",
+  "keywords": [
+    "chromecast",
+    "webpage",
+    "url",
+    "cli",
+    "commandline"
+  ],
+  "author": "Milan van As <milan@corpoflow.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Corpoflow/web2cast/issues"
+  },
+  "homepage": "https://github.com/Corpoflow/web2cast#readme"
   "dependencies": {
     "commander": "^2.19.0"
   }
 }
+

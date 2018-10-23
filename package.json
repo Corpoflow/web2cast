@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "private": false,
   "bin": "bin/web2cast",
-  "main": "index.js",
-  "license": "MIT",
+  "main": "bin/web2cast",
   "keywords": [
     "chromecast",
     "webpage",

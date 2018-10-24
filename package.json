@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/Corpoflow/web2cast#readme",
   "dependencies": {
-    "commander": "^2.19.0"
+    "cast-web-api": "^1.0.2",
+    "commander": "^2.19.0",
+    "sync-request": "^6.0.0"
   }
 }
-

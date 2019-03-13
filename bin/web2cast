@@ -45,6 +45,7 @@ let isIdle = function(deviceName) {
         return false;
     }
 
+    
     let idle = 'unknown';
     if (deviceList) {
         deviceList.forEach(function(device) {
@@ -62,7 +63,7 @@ let isIdle = function(deviceName) {
  */
 let execute = function() {
 
-    if (isIdle(program.chromecast)) {
+    if (isIdle(program.chromecast) === true) {
         // Start cast, shoot and forget
         exec(`${program.bin} -d ${program.chromecast} cast_site ${program.url}`, function() {
             executeTimeout();

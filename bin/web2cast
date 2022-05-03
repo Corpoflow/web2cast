@@ -50,7 +50,7 @@ let isIdle = function(deviceName) {
     if (deviceList) {
         deviceList.forEach(function(device) {
             if (device.name === deviceName) {
-                idle = device.status.application === 'Backdrop';
+                idle = device.status.application === 'Backdrop' || device.status.application === "";
             }
         });
 
